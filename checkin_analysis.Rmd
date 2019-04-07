@@ -236,8 +236,12 @@ head(checkin_freq,10)
 #daynight
 sum_vec_daynight <- c(sum(checkin_freq$Checkin_day),
                       sum(checkin_freq$Checkin_night))
+total_sum <- sum(sum_vec_daynight)
+pct <- round(sum_vec_daynight/total_sum*100,2)
+pct2 <- paste(pct,"%",sep="")
+label_daynight <- paste(c("day","night"),pct2)
 pie(sum_vec_daynight,
-    labels=c("day","night"),
+    labels=label_daynight,
     col=c("red","blue"),
     main="Frequency checkin among all day/night")
 
