@@ -69,18 +69,15 @@ for (i in 1:length(date)){
   first[i] <- date.split[[i]][1]
 }
 first <- as.Date(first)
-
 last <- c()
 for (i in 1:length(date)){
   last[i] <- date.split[[i]][length(date.split[[i]])]
 }
 last <- as.Date(last)
-
 comma <- c()
 for (i in 1:length(date)){
   comma[i] <- str_count(date[i],",")
 }
-
 avg_checkin <- round(difftime(last,first,units="days")/comma,2)
 avg_checkin[which(comma==0)] <- 0
 head(avg_checkin)
