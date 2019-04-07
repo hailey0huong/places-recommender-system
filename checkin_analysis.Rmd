@@ -1,5 +1,5 @@
 ---
-title: "Telp Dataset"
+title: "Checkin"
 author: "Xi Sun"
 date: "February 11, 2019"
 output: pdf_document
