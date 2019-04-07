@@ -45,23 +45,6 @@ checkin <- read.csv("C:/Users/31586/Desktop/yelp_dataset/checkin.csv",header=TRU
 #352
 ```
 
-## Plot the checkin quantities
-
-```{r}
-date <- checkin$date
-numofcheckin <- c()
-for (i in 1:length(date)){
-  number = str_count(date[i],",")+1
-  numofcheckin = c(numofcheckin,number)
-}
-summary(numofcheckin)
-numofcheckintable <- as.data.frame(table(numofcheckin))
-colnames(numofcheckintable)[2] <- "numofrest"
-head(numofcheckintable)
-plot(numofcheckintable$numofcheckin,numofcheckintable$Freq)
-sum(numofcheckin>8000)
-```
-
 ## Average checkin
 
 ```{r}
