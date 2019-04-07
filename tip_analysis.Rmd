@@ -5,6 +5,18 @@ date: "April 7, 2019"
 output: pdf_document
 ---
 
+## Loading libraries will be used
+
+```{r,message=FALSE,warning=FALSE}
+library(jsonlite)
+library(stringr)
+library(tidyr)
+library(chron)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+```
+
 ## Read "tip.json" and write "tip.csv"
 
 ```{r}
