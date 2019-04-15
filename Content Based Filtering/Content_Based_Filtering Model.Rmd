@@ -1,5 +1,5 @@
 ---
-title: "Content-Based Filtering Model"
+title: "Content-Based Filtering"
 author: "Xi Sun"
 date: "April 8, 2019"
 output: pdf_document
