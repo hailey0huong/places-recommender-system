@@ -67,11 +67,6 @@ sele <- readline(prompt="Please select from above: ") #This is for user input
 ```{r,message=FALSE}
 cbf <- function(...,numberOfResult=5){
   x_ind <- c(...)
-  if (all(x_ind %in% rownames(randsample()))){
-    x_ind <- x_ind
-  }else{
-    return("Please select from the list!")
-  }
   n <- length(x_ind)
   m <- nrow(business)
   if (n==0){
