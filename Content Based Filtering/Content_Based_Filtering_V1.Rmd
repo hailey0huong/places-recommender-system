@@ -89,7 +89,6 @@ cbf <- function(...,numberOfResult=5){
   rownames(result) <- c()
   return(result)
 }
-cbf(1,2,numberOfResult=10)
 ```
 
 
