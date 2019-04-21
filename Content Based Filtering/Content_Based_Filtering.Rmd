@@ -1,0 +1,137 @@
+---
+title: "Content-Based Filtering"
+author: "Xi Sun"
+date: "April 8, 2019"
+output: pdf_document
+---
+
+## Libraries
+
+```{r,warning=FALSE,message=FALSE}
+library(hopach)
+```
+
+## Loading the dataset
+
+```{r}
+business <- read.csv("C:/Users/31586/Desktop/yelp_dataset/businessV2.csv",header=TRUE)
+head(business,2)
+
+#nrow(business) #24638
+#ncol(business) #91
+#head(business,100)
+```
+
+## Algorithm
+
+```{r,message=FALSE}
+catlist <- function(...){
+  x_vec <- trimws(tolower(as.character(c(...))))
+  typename_vec <- tolower(names(business)[12:90])
+  n <- length(x)
+  ind1 <- which(typename_vec %in% x_vec)
+  if (n==0){
+    return("Please select something!")
+  }else{
+    if (sum(is.na(ind1)!=0)){
+      return("Please select from the list")
+    }else{
+      x_vec <- x_vec
+    }
+  }
+  ind <- business[,1]
+  mat1 <- business[,12:90]
+  mat2 <- mat1[,ind1]
+  vec_0 <- rep(0,nrow(business))
+  for (i in 1:n){
+    vec_0 <- vec_0+mat2[,i]
+  }
+  mat3 <- cbind(ind,vec_0)
+  ind_0 <- which(mat3[,2]==0)
+  mat3 <- mat3[-ind_0,]
+  list1 <- mat3[,1]
+  datalist <- business[list1,c(1,3,10)]
+  data_order <- datalist[order(datalist$stars,decreasing=TRUE),]
+  return(head(data_order,5))
+} #Generate list based on category
+
+randsample <- function(){
+  rand_ind <- sample(1:nrow(business))
+  rand <- business[rand_ind,c(3:7,10)]
+  return(head(rand,5))
+} #Generate list at random
+list <- randsample()
+
+sele <- readline(prompt="Please select from above: ") #This is for user input
+```
+
+## Work around
+
+```{r}
+business2 <- business[,3:10]
+business2$citystate <- paste(business2$city,business2$state)
+
+```
+
+## Work around
+
+```{r,message=FALSE}
+state_uq <- unique(business$state)
+city_uq <- unique(business$city)
+```
+
+## Content Based Filtering
+
+```{r}
+cbf <- function(...,numberOfResult=5,state,city,postalCode,unique=FALSE){
+  x_ind <- c(...)
+  state_city_mat <- business[which(business$state==state &
+                                   business$city==city &
+                                   business$postal_code==postalCode),]
+  #if (all(x_ind %in% list)){
+  #  x_ind <- x_ind
+  #}else{
+  #  return("Please select from the list!")
+  #}
+  n <- length(x_ind)
+  m <- nrow(business)
+  if (n==0){
+    return("Please select something!")
+  }else{
+    x_ind <- x_ind
+  }
+  x_0 <- rep(0,79)
+  for (i in x_ind){
+    x_0 <- x_0+business[i,12:90]
+  }
+  x_vec <- x_0/sum(x_0)
+  tx_vec <- t(x_vec)
+  bus_mat <- state_city_mat[,12:90]/state_city_mat[,91]
+  dist_mat <- 1-distancevector(bus_mat,tx_vec,"cosangle")
+  result_mat <- cbind(state_city_mat[,c(3:7,10)],dist_mat)
+  result_mat2 <- result_mat[order(result_mat$dist_mat,decreasing=TRUE),]
+  if (unique){
+    result_order <- match(unique(result_mat2$name),state_city_mat$name)
+    result <- head(result_mat2[result_order,],numberOfResult)[,-c(3:5,7)]
+    rownames(result) <- c()
+    return(result)
+  }else{
+    result <- head(result_mat2,numberOfResult)[,-c(3:5,7)]
+    rownames(result) <- c()
+    return(result)
+  }
+}
+cbf(1,2,numberOfResult=10,
+    state="NV",
+    city="las vegas",
+    postalCode=89156,
+    unique=TRUE)
+cbf(1,2,numberOfResult=10,
+    state="NV",
+    city="las vegas",
+    postalCode=89156,
+    unique=FALSE)
+```
+
+
+
