@@ -10,4 +10,4 @@ Forth, the city.
 
 Fifth, the postal code.
 
-Sixth, whether or not we want unique output list for the restaurant names.(Optional)
+Sixth, whether or not we want unique output list for the restaurant names.(Optional, default is FALSE)
