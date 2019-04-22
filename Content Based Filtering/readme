@@ -1,0 +1,13 @@
+For Content_Based_Filtering_V2, we need to specify the following:
+
+First, the "column number" selection from the random list generation.(result from randsample function)
+
+Second, the number of results you want.
+
+Third, the state.
+
+Forth, the city.
+
+Fifth, the postal code.
+
+Sixth, if we want unique output for the restaurant names.(Optional)
