@@ -1,4 +1,4 @@
-For Content_Based_Filtering_V2, we need to specify the following:
+For Content-Based Filtering.ipynb, we need to specify the following:
 
 First, the "column number" selection from the random list generation.(result from randsample function)
 
@@ -9,5 +9,3 @@ Third, the state.
 Forth, the city.
 
 Fifth, the postal code.
-
-Sixth, whether or not we want unique output list for the restaurant names.(Optional, default is FALSE)
