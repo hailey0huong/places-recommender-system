@@ -1,12 +1,27 @@
 <!doctype html>
+
 <html>
+
+        <style>
+                body {
+                        background-image: url('https://images.pexels.com/photos/326268/pexels-photo-326268.jpeg'); 
+                        background-size: 100%; 
+                        background-position: top center;
+                        background-repeat:no-repeat;
+                        box-shadow: inset 0 0 0 1000px rgba(5, 5, 5, 0.5);
+                        color: WHITE;
+                        width: 900px;
+                        font-family: 'Courier New', Courier, monospace;
+            
+                    }
+            </style>
     <body>
-        <h1 style="text-align: center; color:darkred"> Your Top Recommended Restaurants</h1>
+        <h1 style="text-align: center; color:rgb(226, 64, 64); font-weight: bolder"> Your Top Recommended Restaurants</h1>
         <div style= 'text-align: center'>
                 {% for k,v in prediction.items() %}
-                <h3>{{ k }}</h3>
+                <h2 style='color:rgb(122, 177, 115)'>{{ k }}</h2>
                     {% for i in v %}
-                    <p> {{ i }} </p>
+                    <p style="font-size: 2"> {{ i }} </p>
                     {% endfor %}
                 {% endfor %}
      

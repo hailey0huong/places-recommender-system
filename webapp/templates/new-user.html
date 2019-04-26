@@ -1,18 +1,1112 @@
 <html>
+
+<style>
+    body {
+            background-image: url('https://images.pexels.com/photos/1268549/pexels-photo-1268549.jpeg'); 
+            background-size: 100%; 
+            background-position: top center;
+            background-repeat:no-repeat;
+            box-shadow: inset 0 0 0 1000px rgba(87, 86, 86, 0.5);
+            color: WHITE;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+
+
+</style>
+
+
     <body>
-        <h2 style= 'text-align: center; color: darkred'> Please select 5 restaurants from our list to start</h2>
+        <h1 style= 'text-align: center; color:rgb(226, 64, 64)'> We'd love to get to know you! </h1>
+        <h3 style="text-align: center"> First, please tell us 5 restaurants that you liked in the past (the more the merrier) </h3>
         <div style='text-align: center'>
                 <form action="/new-user-result" method="POST">
-                    <label for="business_id">Restaurant:</label>
-                        <select id ='business_name' name="business_name" style="width:100px;height:500px" multiple>
-                                {% for i in out %}
-                                <option value={{i}}>{{i}}</option>
+                    <label for="business_id">Please select from this list: </label>
+                    <br>
+                    <br>
+                        <select id ='business_id' name="business_id" style="width:250px;height:350px" multiple class="form-control">
+                                {% for i,n in out %}
+                                <option value={{i}}>{{n}}</option>
                                 {% endfor %}
                                 
                         </select>
-
                         <br>
-                        <input type="Submit" value="Search">
+                        <br>
+                    <h3> Great! Where would you like to explore?</h3>
+                    <label for="zip_code">Zip Code
+                        <input list = "zip_code" name = "zip_code" /></label>
+                        <datalist id="zip_code">
+                            <option value="12919">12919</option>
+                            <option value="12958">12958</option>
+                            <option value="12979">12979</option>
+                            <option value="15001">15001</option>
+                            <option value="15003">15003</option>
+                            <option value="15012">15012</option>
+                            <option value="15017">15017</option>
+                            <option value="15018">15018</option>
+                            <option value="15024">15024</option>
+                            <option value="15025">15025</option>
+                            <option value="15030">15030</option>
+                            <option value="15031">15031</option>
+                            <option value="15034">15034</option>
+                            <option value="15035">15035</option>
+                            <option value="15037">15037</option>
+                            <option value="15038">15038</option>
+                            <option value="15044">15044</option>
+                            <option value="15045">15045</option>
+                            <option value="15046">15046</option>
+                            <option value="15049">15049</option>
+                            <option value="15051">15051</option>
+                            <option value="15055">15055</option>
+                            <option value="15056">15056</option>
+                            <option value="15057">15057</option>
+                            <option value="15060">15060</option>
+                            <option value="15063">15063</option>
+                            <option value="15067">15067</option>
+                            <option value="15068">15068</option>
+                            <option value="15071">15071</option>
+                            <option value="15075">15075</option>
+                            <option value="15076">15076</option>
+                            <option value="15082">15082</option>
+                            <option value="15083">15083</option>
+                            <option value="15084">15084</option>
+                            <option value="15085">15085</option>
+                            <option value="15088">15088</option>
+                            <option value="15090">15090</option>
+                            <option value="15101">15101</option>
+                            <option value="15102">15102</option>
+                            <option value="15104">15104</option>
+                            <option value="15106">15106</option>
+                            <option value="15108">15108</option>
+                            <option value="15110">15110</option>
+                            <option value="15112">15112</option>
+                            <option value="15116">15116</option>
+                            <option value="15120">15120</option>
+                            <option value="15129">15129</option>
+                            <option value="15132">15132</option>
+                            <option value="15135">15135</option>
+                            <option value="15137">15137</option>
+                            <option value="15140">15140</option>
+                            <option value="15143">15143</option>
+                            <option value="15145">15145</option>
+                            <option value="15147">15147</option>
+                            <option value="15632">15632</option>
+                            <option value="15636">15636</option>
+                            <option value="15637">15637</option>
+                            <option value="15642">15642</option>
+                            <option value="15668">15668</option>
+                            <option value="15678">15678</option>
+                            <option value="16509">16509</option>
+                            <option value="21211">21211</option>
+                            <option value="23120">23120</option>
+                            <option value="27262">27262</option>
+                            <option value="27278">27278</option>
+                            <option value="28001">28001</option>
+                            <option value="28012">28012</option>
+                            <option value="28025">28025</option>
+                            <option value="28026">28026</option>
+                            <option value="28027">28027</option>
+                            <option value="28031">28031</option>
+                            <option value="28032">28032</option>
+                            <option value="28034">28034</option>
+                            <option value="28036">28036</option>
+                            <option value="28037">28037</option>
+                            <option value="28052">28052</option>
+                            <option value="28054">28054</option>
+                            <option value="28056">28056</option>
+                            <option value="28070">28070</option>
+                            <option value="28075">28075</option>
+                            <option value="28078">28078</option>
+                            <option value="28079">28079</option>
+                            <option value="28081">28081</option>
+                            <option value="28083">28083</option>
+                            <option value="28097">28097</option>
+                            <option value="28098">28098</option>
+                            <option value="28101">28101</option>
+                            <option value="28104">28104</option>
+                            <option value="28105">28105</option>
+                            <option value="28107">28107</option>
+                            <option value="28110">28110</option>
+                            <option value="28115">28115</option>
+                            <option value="28117">28117</option>
+                            <option value="28120">28120</option>
+                            <option value="28130">28130</option>
+                            <option value="28134">28134</option>
+                            <option value="28164">28164</option>
+                            <option value="28173">28173</option>
+                            <option value="28202">28202</option>
+                            <option value="28203">28203</option>
+                            <option value="28204">28204</option>
+                            <option value="28205">28205</option>
+                            <option value="28206">28206</option>
+                            <option value="28207">28207</option>
+                            <option value="28208">28208</option>
+                            <option value="28209">28209</option>
+                            <option value="28210">28210</option>
+                            <option value="28211">28211</option>
+                            <option value="28212">28212</option>
+                            <option value="28213">28213</option>
+                            <option value="28214">28214</option>
+                            <option value="28215">28215</option>
+                            <option value="28216">28216</option>
+                            <option value="28217">28217</option>
+                            <option value="28221">28221</option>
+                            <option value="28226">28226</option>
+                            <option value="28227">28227</option>
+                            <option value="28244">28244</option>
+                            <option value="28246">28246</option>
+                            <option value="28255">28255</option>
+                            <option value="28262">28262</option>
+                            <option value="28263">28263</option>
+                            <option value="28269">28269</option>
+                            <option value="28270">28270</option>
+                            <option value="28272">28272</option>
+                            <option value="28273">28273</option>
+                            <option value="28277">28277</option>
+                            <option value="28278">28278</option>
+                            <option value="28280">28280</option>
+                            <option value="28282">28282</option>
+                            <option value="28284">28284</option>
+                            <option value="28285">28285</option>
+                            <option value="28303">28303</option>
+                            <option value="29301">29301</option>
+                            <option value="29432">29432</option>
+                            <option value="29707">29707</option>
+                            <option value="29708">29708</option>
+                            <option value="29710">29710</option>
+                            <option value="29730">29730</option>
+                            <option value="29732">29732</option>
+                            <option value="29745">29745</option>
+                            <option value="44045">44045</option>
+                            <option value="44050">44050</option>
+                            <option value="44052">44052</option>
+                            <option value="44054">44054</option>
+                            <option value="44055">44055</option>
+                            <option value="44056">44056</option>
+                            <option value="44062">44062</option>
+                            <option value="44065">44065</option>
+                            <option value="44077">44077</option>
+                            <option value="44081">44081</option>
+                            <option value="44087">44087</option>
+                            <option value="44092">44092</option>
+                            <option value="44094">44094</option>
+                            <option value="44095">44095</option>
+                            <option value="44101">44101</option>
+                            <option value="44102">44102</option>
+                            <option value="44103">44103</option>
+                            <option value="44104">44104</option>
+                            <option value="44105">44105</option>
+                            <option value="44106">44106</option>
+                            <option value="44107">44107</option>
+                            <option value="44108">44108</option>
+                            <option value="44109">44109</option>
+                            <option value="44110">44110</option>
+                            <option value="44111">44111</option>
+                            <option value="44112">44112</option>
+                            <option value="44113">44113</option>
+                            <option value="44114">44114</option>
+                            <option value="44115">44115</option>
+                            <option value="44116">44116</option>
+                            <option value="44117">44117</option>
+                            <option value="44118">44118</option>
+                            <option value="44119">44119</option>
+                            <option value="44120">44120</option>
+                            <option value="44121">44121</option>
+                            <option value="44122">44122</option>
+                            <option value="44124">44124</option>
+                            <option value="44125">44125</option>
+                            <option value="44126">44126</option>
+                            <option value="44128">44128</option>
+                            <option value="44129">44129</option>
+                            <option value="44130">44130</option>
+                            <option value="44131">44131</option>
+                            <option value="44133">44133</option>
+                            <option value="44134">44134</option>
+                            <option value="44135">44135</option>
+                            <option value="44136">44136</option>
+                            <option value="44138">44138</option>
+                            <option value="44139">44139</option>
+                            <option value="44140">44140</option>
+                            <option value="44141">44141</option>
+                            <option value="44142">44142</option>
+                            <option value="44143">44143</option>
+                            <option value="44144">44144</option>
+                            <option value="44145">44145</option>
+                            <option value="44146">44146</option>
+                            <option value="44147">44147</option>
+                            <option value="44149">44149</option>
+                            <option value="44178">44178</option>
+                            <option value="44195">44195</option>
+                            <option value="44202">44202</option>
+                            <option value="44203">44203</option>
+                            <option value="44210">44210</option>
+                            <option value="44211">44211</option>
+                            <option value="44212">44212</option>
+                            <option value="44219">44219</option>
+                            <option value="44221">44221</option>
+                            <option value="44223">44223</option>
+                            <option value="44224">44224</option>
+                            <option value="44233">44233</option>
+                            <option value="44234">44234</option>
+                            <option value="44236">44236</option>
+                            <option value="44240">44240</option>
+                            <option value="44241">44241</option>
+                            <option value="44253">44253</option>
+                            <option value="44255">44255</option>
+                            <option value="44256">44256</option>
+                            <option value="44262">44262</option>
+                            <option value="44264">44264</option>
+                            <option value="44266">44266</option>
+                            <option value="44278">44278</option>
+                            <option value="44280">44280</option>
+                            <option value="44281">44281</option>
+                            <option value="44286">44286</option>
+                            <option value="44301">44301</option>
+                            <option value="44303">44303</option>
+                            <option value="44307">44307</option>
+                            <option value="44310">44310</option>
+                            <option value="44312">44312</option>
+                            <option value="44313">44313</option>
+                            <option value="44314">44314</option>
+                            <option value="44320">44320</option>
+                            <option value="44321">44321</option>
+                            <option value="44333">44333</option>
+                            <option value="44334">44334</option>
+                            <option value="53702">53702</option>
+                            <option value="53703">53703</option>
+                            <option value="53704">53704</option>
+                            <option value="53705">53705</option>
+                            <option value="53706">53706</option>
+                            <option value="53711">53711</option>
+                            <option value="53713">53713</option>
+                            <option value="53714">53714</option>
+                            <option value="53715">53715</option>
+                            <option value="53716">53716</option>
+                            <option value="53717">53717</option>
+                            <option value="53718">53718</option>
+                            <option value="53719">53719</option>
+                            <option value="53726">53726</option>
+                            <option value="53774">53774</option>
+                            <option value="61856">61856</option>
+                            <option value="61859">61859</option>
+                            <option value="61864">61864</option>
+                            <option value="61866">61866</option>
+                            <option value="61873">61873</option>
+                            <option value="61874">61874</option>
+                            <option value="61877">61877</option>
+                            <option value="61880">61880</option>
+                            <option value="61953">61953</option>
+                            <option value="61956">61956</option>
+                            <option value="68114">68114</option>
+                            <option value="85083">85083</option>
+                            <option value="89152">89152</option>
+                            <option value="89155">89155</option>
+                            <option value="89158">89158</option>
+                            <option value="89162">89162</option>
+                            <option value="89165">89165</option>
+                            <option value="44044">44044</option>
+                            <option value="44137">44137</option>
+                            <option value="53508">53508</option>
+                            <option value="53515">53515</option>
+                            <option value="53527">53527</option>
+                            <option value="53528">53528</option>
+                            <option value="53529">53529</option>
+                            <option value="53531">53531</option>
+                            <option value="53532">53532</option>
+                            <option value="53558">53558</option>
+                            <option value="53559">53559</option>
+                            <option value="53562">53562</option>
+                            <option value="53572">53572</option>
+                            <option value="53575">53575</option>
+                            <option value="53583">53583</option>
+                            <option value="53589">53589</option>
+                            <option value="53590">53590</option>
+                            <option value="53593">53593</option>
+                            <option value="53597">53597</option>
+                            <option value="53598">53598</option>
+                            <option value="61801">61801</option>
+                            <option value="61802">61802</option>
+                            <option value="61803">61803</option>
+                            <option value="61820">61820</option>
+                            <option value="61821">61821</option>
+                            <option value="61822">61822</option>
+                            <option value="61843">61843</option>
+                            <option value="61849">61849</option>
+                            <option value="61853">61853</option>
+                            <option value="61854">61854</option>
+                            <option value="84295">84295</option>
+                            <option value="89179">89179</option>
+                            <option value="89191">89191</option>
+                            <option value="89193">89193</option>
+                            <option value="15122">15122</option>
+                            <option value="15126">15126</option>
+                            <option value="15131">15131</option>
+                            <option value="15133">15133</option>
+                            <option value="15136">15136</option>
+                            <option value="15139">15139</option>
+                            <option value="15142">15142</option>
+                            <option value="15144">15144</option>
+                            <option value="15146">15146</option>
+                            <option value="15148">15148</option>
+                            <option value="15201">15201</option>
+                            <option value="15202">15202</option>
+                            <option value="15203">15203</option>
+                            <option value="15205">15205</option>
+                            <option value="15206">15206</option>
+                            <option value="15207">15207</option>
+                            <option value="15208">15208</option>
+                            <option value="15209">15209</option>
+                            <option value="15210">15210</option>
+                            <option value="15211">15211</option>
+                            <option value="15212">15212</option>
+                            <option value="15213">15213</option>
+                            <option value="15214">15214</option>
+                            <option value="15215">15215</option>
+                            <option value="15216">15216</option>
+                            <option value="15217">15217</option>
+                            <option value="15218">15218</option>
+                            <option value="15219">15219</option>
+                            <option value="15220">15220</option>
+                            <option value="15221">15221</option>
+                            <option value="15222">15222</option>
+                            <option value="15223">15223</option>
+                            <option value="15224">15224</option>
+                            <option value="15225">15225</option>
+                            <option value="15226">15226</option>
+                            <option value="15227">15227</option>
+                            <option value="15228">15228</option>
+                            <option value="15229">15229</option>
+                            <option value="15231">15231</option>
+                            <option value="15232">15232</option>
+                            <option value="15233">15233</option>
+                            <option value="15234">15234</option>
+                            <option value="15235">15235</option>
+                            <option value="15236">15236</option>
+                            <option value="15237">15237</option>
+                            <option value="15238">15238</option>
+                            <option value="15239">15239</option>
+                            <option value="15240">15240</option>
+                            <option value="15241">15241</option>
+                            <option value="15243">15243</option>
+                            <option value="15260">15260</option>
+                            <option value="15275">15275</option>
+                            <option value="15289">15289</option>
+                            <option value="15301">15301</option>
+                            <option value="15317">15317</option>
+                            <option value="15321">15321</option>
+                            <option value="15332">15332</option>
+                            <option value="15339">15339</option>
+                            <option value="15367">15367</option>
+                            <option value="29715">29715</option>
+                            <option value="44001">44001</option>
+                            <option value="44011">44011</option>
+                            <option value="44012">44012</option>
+                            <option value="44017">44017</option>
+                            <option value="44021">44021</option>
+                            <option value="44022">44022</option>
+                            <option value="44023">44023</option>
+                            <option value="44024">44024</option>
+                            <option value="44026">44026</option>
+                            <option value="44028">44028</option>
+                            <option value="44035">44035</option>
+                            <option value="44039">44039</option>
+                            <option value="44040">44040</option>
+                            <option value="44053">44053</option>
+                            <option value="44060">44060</option>
+                            <option value="44067">44067</option>
+                            <option value="44070">44070</option>
+                            <option value="44123">44123</option>
+                            <option value="44127">44127</option>
+                            <option value="44132">44132</option>
+                            <option value="71655">71655</option>
+                            <option value="85001">85001</option>
+                            <option value="85003">85003</option>
+                            <option value="85004">85004</option>
+                            <option value="85005">85005</option>
+                            <option value="85006">85006</option>
+                            <option value="85007">85007</option>
+                            <option value="85008">85008</option>
+                            <option value="85009">85009</option>
+                            <option value="85010">85010</option>
+                            <option value="85012">85012</option>
+                            <option value="85013">85013</option>
+                            <option value="85014">85014</option>
+                            <option value="85015">85015</option>
+                            <option value="85016">85016</option>
+                            <option value="85017">85017</option>
+                            <option value="85018">85018</option>
+                            <option value="85019">85019</option>
+                            <option value="85020">85020</option>
+                            <option value="85021">85021</option>
+                            <option value="85022">85022</option>
+                            <option value="85023">85023</option>
+                            <option value="85024">85024</option>
+                            <option value="85027">85027</option>
+                            <option value="85028">85028</option>
+                            <option value="85029">85029</option>
+                            <option value="85031">85031</option>
+                            <option value="85032">85032</option>
+                            <option value="85033">85033</option>
+                            <option value="85034">85034</option>
+                            <option value="85035">85035</option>
+                            <option value="85037">85037</option>
+                            <option value="85040">85040</option>
+                            <option value="85041">85041</option>
+                            <option value="85042">85042</option>
+                            <option value="85043">85043</option>
+                            <option value="85044">85044</option>
+                            <option value="85045">85045</option>
+                            <option value="85048">85048</option>
+                            <option value="85050">85050</option>
+                            <option value="85051">85051</option>
+                            <option value="85053">85053</option>
+                            <option value="85054">85054</option>
+                            <option value="85058">85058</option>
+                            <option value="85064">85064</option>
+                            <option value="85073">85073</option>
+                            <option value="85085">85085</option>
+                            <option value="85086">85086</option>
+                            <option value="85120">85120</option>
+                            <option value="85142">85142</option>
+                            <option value="85201">85201</option>
+                            <option value="85202">85202</option>
+                            <option value="85203">85203</option>
+                            <option value="85204">85204</option>
+                            <option value="85205">85205</option>
+                            <option value="85206">85206</option>
+                            <option value="85207">85207</option>
+                            <option value="85208">85208</option>
+                            <option value="85209">85209</option>
+                            <option value="85210">85210</option>
+                            <option value="85212">85212</option>
+                            <option value="85213">85213</option>
+                            <option value="85215">85215</option>
+                            <option value="85220">85220</option>
+                            <option value="85224">85224</option>
+                            <option value="85225">85225</option>
+                            <option value="85226">85226</option>
+                            <option value="85233">85233</option>
+                            <option value="85234">85234</option>
+                            <option value="85236">85236</option>
+                            <option value="85242">85242</option>
+                            <option value="85248">85248</option>
+                            <option value="85249">85249</option>
+                            <option value="85250">85250</option>
+                            <option value="85251">85251</option>
+                            <option value="85252">85252</option>
+                            <option value="85253">85253</option>
+                            <option value="85254">85254</option>
+                            <option value="85255">85255</option>
+                            <option value="85256">85256</option>
+                            <option value="85257">85257</option>
+                            <option value="85258">85258</option>
+                            <option value="85259">85259</option>
+                            <option value="85260">85260</option>
+                            <option value="85262">85262</option>
+                            <option value="85263">85263</option>
+                            <option value="85264">85264</option>
+                            <option value="85266">85266</option>
+                            <option value="85268">85268</option>
+                            <option value="85280">85280</option>
+                            <option value="85281">85281</option>
+                            <option value="85282">85282</option>
+                            <option value="85283">85283</option>
+                            <option value="85284">85284</option>
+                            <option value="85286">85286</option>
+                            <option value="85287">85287</option>
+                            <option value="85295">85295</option>
+                            <option value="85296">85296</option>
+                            <option value="85297">85297</option>
+                            <option value="85298">85298</option>
+                            <option value="85301">85301</option>
+                            <option value="85302">85302</option>
+                            <option value="85303">85303</option>
+                            <option value="85304">85304</option>
+                            <option value="85305">85305</option>
+                            <option value="85306">85306</option>
+                            <option value="85307">85307</option>
+                            <option value="85308">85308</option>
+                            <option value="85310">85310</option>
+                            <option value="85318">85318</option>
+                            <option value="85323">85323</option>
+                            <option value="85326">85326</option>
+                            <option value="85331">85331</option>
+                            <option value="85335">85335</option>
+                            <option value="85338">85338</option>
+                            <option value="85339">85339</option>
+                            <option value="85340">85340</option>
+                            <option value="85345">85345</option>
+                            <option value="85350">85350</option>
+                            <option value="85351">85351</option>
+                            <option value="85353">85353</option>
+                            <option value="85355">85355</option>
+                            <option value="85363">85363</option>
+                            <option value="85373">85373</option>
+                            <option value="85374">85374</option>
+                            <option value="85375">85375</option>
+                            <option value="85377">85377</option>
+                            <option value="85378">85378</option>
+                            <option value="85379">85379</option>
+                            <option value="85381">85381</option>
+                            <option value="85382">85382</option>
+                            <option value="85383">85383</option>
+                            <option value="85387">85387</option>
+                            <option value="85388">85388</option>
+                            <option value="85392">85392</option>
+                            <option value="85394">85394</option>
+                            <option value="85395">85395</option>
+                            <option value="85396">85396</option>
+                            <option value="85734">85734</option>
+                            <option value="87701">87701</option>
+                            <option value="88901">88901</option>
+                            <option value="89002">89002</option>
+                            <option value="89004">89004</option>
+                            <option value="89005">89005</option>
+                            <option value="89011">89011</option>
+                            <option value="89012">89012</option>
+                            <option value="89014">89014</option>
+                            <option value="89015">89015</option>
+                            <option value="89019">89019</option>
+                            <option value="89030">89030</option>
+                            <option value="89031">89031</option>
+                            <option value="89032">89032</option>
+                            <option value="89044">89044</option>
+                            <option value="89052">89052</option>
+                            <option value="89054">89054</option>
+                            <option value="89074">89074</option>
+                            <option value="89081">89081</option>
+                            <option value="89084">89084</option>
+                            <option value="89086">89086</option>
+                            <option value="89101">89101</option>
+                            <option value="89102">89102</option>
+                            <option value="89103">89103</option>
+                            <option value="89104">89104</option>
+                            <option value="89105">89105</option>
+                            <option value="89106">89106</option>
+                            <option value="89107">89107</option>
+                            <option value="89108">89108</option>
+                            <option value="89109">89109</option>
+                            <option value="89110">89110</option>
+                            <option value="89111">89111</option>
+                            <option value="89113">89113</option>
+                            <option value="89114">89114</option>
+                            <option value="89115">89115</option>
+                            <option value="89117">89117</option>
+                            <option value="89118">89118</option>
+                            <option value="89119">89119</option>
+                            <option value="89120">89120</option>
+                            <option value="89121">89121</option>
+                            <option value="89122">89122</option>
+                            <option value="89123">89123</option>
+                            <option value="89124">89124</option>
+                            <option value="89128">89128</option>
+                            <option value="89129">89129</option>
+                            <option value="89130">89130</option>
+                            <option value="89131">89131</option>
+                            <option value="89133">89133</option>
+                            <option value="89134">89134</option>
+                            <option value="89135">89135</option>
+                            <option value="89136">89136</option>
+                            <option value="89138">89138</option>
+                            <option value="89139">89139</option>
+                            <option value="89141">89141</option>
+                            <option value="89142">89142</option>
+                            <option value="89143">89143</option>
+                            <option value="89144">89144</option>
+                            <option value="89145">89145</option>
+                            <option value="89146">89146</option>
+                            <option value="89147">89147</option>
+                            <option value="89148">89148</option>
+                            <option value="89149">89149</option>
+                            <option value="89154">89154</option>
+                            <option value="89156">89156</option>
+                            <option value="89166">89166</option>
+                            <option value="89169">89169</option>
+                            <option value="89178">89178</option>
+                            <option value="89183">89183</option>
+                            <option value="89502">89502</option>
+                            <option value="93013">93013</option>
+                        </datalist>
+                        <br>
+                        <br>
+                        <label for="city">City
+                            <input list = "city" name = "city" />
+                        </label>
+                        <datalist id="city">
+                            <option value="akron">Akron</option>
+                            <option value="aliquippa">Aliquippa</option>
+                            <option value="allison park">Allison park</option>
+                            <option value="ambridge">Ambridge</option>
+                            <option value="amherst">Amherst</option>
+                            <option value="anthem">Anthem</option>
+                            <option value="apache junction">Apache junction</option>
+                            <option value="arnold">Arnold</option>
+                            <option value="aspinwall">Aspinwall</option>
+                            <option value="auburn township">Auburn township</option>
+                            <option value="aurora">Aurora</option>
+                            <option value="avalon">Avalon</option>
+                            <option value="avon">Avon</option>
+                            <option value="avon lake">Avon lake</option>
+                            <option value="avondale">Avondale</option>
+                            <option value="bainbridge">Bainbridge</option>
+                            <option value="bainbridge township">Bainbridge township</option>
+                            <option value="baldwin">Baldwin</option>
+                            <option value="bath township">Bath township</option>
+                            <option value="bay village">Bay village</option>
+                            <option value="beachwood">Beachwood</option>
+                            <option value="bedford">Bedford</option>
+                            <option value="bedford heights">Bedford heights</option>
+                            <option value="belle vernon">Belle vernon</option>
+                            <option value="belleville">Belleville</option>
+                            <option value="bellevue">Bellevue</option>
+                            <option value="belmont">Belmont</option>
+                            <option value="ben avon">Ben avon</option>
+                            <option value="berea">Berea</option>
+                            <option value="bethel park">Bethel park</option>
+                            <option value="black earth">Black earth</option>
+                            <option value="blawnox">Blawnox</option>
+                            <option value="blue diamond">Blue diamond</option>
+                            <option value="boulder city">Boulder city</option>
+                            <option value="braddock">Braddock</option>
+                            <option value="bratenahl">Bratenahl</option>
+                            <option value="brecksville">Brecksville</option>
+                            <option value="brentwood">Brentwood</option>
+                            <option value="bridgeville">Bridgeville</option>
+                            <option value="broadview heights">Broadview heights</option>
+                            <option value="brook park">Brook park</option>
+                            <option value="brookline">Brookline</option>
+                            <option value="brooklyn">Brooklyn</option>
+                            <option value="brunswick">Brunswick</option>
+                            <option value="brunswick hills">Brunswick hills</option>
+                            <option value="buckeye">Buckeye</option>
+                            <option value="buena vista">Buena vista</option>
+                            <option value="burton">Burton</option>
+                            <option value="canonsburg">Canonsburg</option>
+                            <option value="carefree">Carefree</option>
+                            <option value="carnegie">Carnegie</option>
+                            <option value="castle shannon">Castle shannon</option>
+                            <option value="cave creek">Cave creek</option>
+                            <option value="cecil">Cecil</option>
+                            <option value="chagrin falls">Chagrin falls</option>
+                            <option value="champaign">Champaign</option>
+                            <option value="champlain">Champlain</option>
+                            <option value="chandler">Chandler</option>
+                            <option value="chardon">Chardon</option>
+                            <option value="chargrin falls">Chargrin falls</option>
+                            <option value="charlotte">Charlotte</option>
+                            <option value="chesterland">Chesterland</option>
+                            <option value="cheswick">Cheswick</option>
+                            <option value="clairton">Clairton</option>
+                            <option value="clark">Clark</option>
+                            <option value="cleveland">Cleveland</option>
+                            <option value="cleveland heights">Cleveland heights</option>
+                            <option value="clover">Clover</option>
+                            <option value="columbia station">Columbia station</option>
+                            <option value="concord">Concord</option>
+                            <option value="concord township">Concord township</option>
+                            <option value="copley">Copley</option>
+                            <option value="coraopolis">Coraopolis</option>
+                            <option value="cornelius">Cornelius</option>
+                            <option value="cottage grove">Cottage grove</option>
+                            <option value="crafton">Crafton</option>
+                            <option value="cramerton">Cramerton</option>
+                            <option value="creighton">Creighton</option>
+                            <option value="crescent">Crescent</option>
+                            <option value="cross plains">Cross plains</option>
+                            <option value="cuddy">Cuddy</option>
+                            <option value="cuyahoga falls">Cuyahoga falls</option>
+                            <option value="cuyahoga heights">Cuyahoga heights</option>
+                            <option value="dallas">Dallas</option>
+                            <option value="dane">Dane</option>
+                            <option value="davidson">Davidson</option>
+                            <option value="de forest">De forest</option>
+                            <option value="deerfield">Deerfield</option>
+                            <option value="denver">Denver</option>
+                            <option value="dravosburg">Dravosburg</option>
+                            <option value="duquesne">Duquesne</option>
+                            <option value="east cleveland">East cleveland</option>
+                            <option value="east mckeesport">East mckeesport</option>
+                            <option value="east pittsburgh">East pittsburgh</option>
+                            <option value="eastlake">Eastlake</option>
+                            <option value="edgewood">Edgewood</option>
+                            <option value="el mirage">El mirage</option>
+                            <option value="elizabeth">Elizabeth</option>
+                            <option value="elizabeth township">Elizabeth township</option>
+                            <option value="elrama">Elrama</option>
+                            <option value="elyria">Elyria</option>
+                            <option value="emsworth">Emsworth</option>
+                            <option value="enterprise">Enterprise</option>
+                            <option value="erie">Erie</option>
+                            <option value="etna">Etna</option>
+                            <option value="euclid">Euclid</option>
+                            <option value="export">Export</option>
+                            <option value="fairlawn">Fairlawn</option>
+                            <option value="fairport harbor">Fairport harbor</option>
+                            <option value="fairview park">Fairview park</option>
+                            <option value="finleyville">Finleyville</option>
+                            <option value="fisher">Fisher</option>
+                            <option value="fitchburg">Fitchburg</option>
+                            <option value="forest hills">Forest hills</option>
+                            <option value="fort mcdowell">Fort mcdowell</option>
+                            <option value="fort mill">Fort mill</option>
+                            <option value="fountain hills">Fountain hills</option>
+                            <option value="garfield heights">Garfield heights</option>
+                            <option value="gastonia">Gastonia</option>
+                            <option value="gates mills">Gates mills</option>
+                            <option value="gibsonia">Gibsonia</option>
+                            <option value="gifford">Gifford</option>
+                            <option value="gilbert">Gilbert</option>
+                            <option value="glassport">Glassport</option>
+                            <option value="glendale">Glendale</option>
+                            <option value="glenshaw">Glenshaw</option>
+                            <option value="goodyear">Goodyear</option>
+                            <option value="grafton">Grafton</option>
+                            <option value="grand river">Grand river</option>
+                            <option value="green tree">Green tree</option>
+                            <option value="guadalupe">Guadalupe</option>
+                            <option value="hampton township">Hampton township</option>
+                            <option value="harmarville">Harmarville</option>
+                            <option value="harrisburg">Harrisburg</option>
+                            <option value="harrison city">Harrison city</option>
+                            <option value="harwick">Harwick</option>
+                            <option value="heidelberg">Heidelberg</option>
+                            <option value="henderson">Henderson</option>
+                            <option value="hendersonville">Hendersonville</option>
+                            <option value="herminie">Herminie</option>
+                            <option value="highland heights">Highland heights</option>
+                            <option value="higley">Higley</option>
+                            <option value="hinckley">Hinckley</option>
+                            <option value="hiram">Hiram</option>
+                            <option value="homer">Homer</option>
+                            <option value="homestead">Homestead</option>
+                            <option value="hudson">Hudson</option>
+                            <option value="huntersville">Huntersville</option>
+                            <option value="imperial">Imperial</option>
+                            <option value="independence">Independence</option>
+                            <option value="indian land">Indian land</option>
+                            <option value="indian trail">Indian trail</option>
+                            <option value="indianola">Indianola</option>
+                            <option value="irwin">Irwin</option>
+                            <option value="jefferson hills">Jefferson hills</option>
+                            <option value="kannapolis">Kannapolis</option>
+                            <option value="kennedy township">Kennedy township</option>
+                            <option value="kent">Kent</option>
+                            <option value="kirtland">Kirtland</option>
+                            <option value="lagrange">Lagrange</option>
+                            <option value="lake park">Lake park</option>
+                            <option value="lake wylie">Lake wylie</option>
+                            <option value="lakewood">Lakewood</option>
+                            <option value="las vegas">Las vegas</option>
+                            <option value="lawrence">Lawrence</option>
+                            <option value="leetsdale">Leetsdale</option>
+                            <option value="library">Library</option>
+                            <option value="lindale">Lindale</option>
+                            <option value="litchfield">Litchfield</option>
+                            <option value="litchfield park">Litchfield park</option>
+                            <option value="locust">Locust</option>
+                            <option value="lorain">Lorain</option>
+                            <option value="lowell">Lowell</option>
+                            <option value="lower burrell">Lower burrell</option>
+                            <option value="lowesville">Lowesville</option>
+                            <option value="lyndhurst">Lyndhurst</option>
+                            <option value="macedonia">Macedonia</option>
+                            <option value="madison">Madison</option>
+                            <option value="mahomet">Mahomet</option>
+                            <option value="mansfield">Mansfield</option>
+                            <option value="mantua">Mantua</option>
+                            <option value="maple heights">Maple heights</option>
+                            <option value="maricopa">Maricopa</option>
+                            <option value="marshall">Marshall</option>
+                            <option value="matthews">Matthews</option>
+                            <option value="mayfield">Mayfield</option>
+                            <option value="mayfield heights">Mayfield heights</option>
+                            <option value="mcadenville">Mcadenville</option>
+                            <option value="mccandless">Mccandless</option>
+                            <option value="mcdonald">Mcdonald</option>
+                            <option value="mcfarland">Mcfarland</option>
+                            <option value="mckees rocks">Mckees rocks</option>
+                            <option value="mckeesport">Mckeesport</option>
+                            <option value="mcknight">Mcknight</option>
+                            <option value="medina">Medina</option>
+                            <option value="medina township">Medina township</option>
+                            <option value="mentor">Mentor</option>
+                            <option value="mentor on the lake">Mentor on the lake</option>
+                            <option value="mesa">Mesa</option>
+                            <option value="middleburg heights">Middleburg heights</option>
+                            <option value="middlefield">Middlefield</option>
+                            <option value="middleton">Middleton</option>
+                            <option value="midland">Midland</option>
+                            <option value="midway">Midway</option>
+                            <option value="millvale">Millvale</option>
+                            <option value="mint hill">Mint hill</option>
+                            <option value="monona">Monona</option>
+                            <option value="monongahela">Monongahela</option>
+                            <option value="monroe">Monroe</option>
+                            <option value="monroeville">Monroeville</option>
+                            <option value="montgomery">Montgomery</option>
+                            <option value="monticello">Monticello</option>
+                            <option value="montrose">Montrose</option>
+                            <option value="mooers">Mooers</option>
+                            <option value="moon">Moon</option>
+                            <option value="moon township">Moon township</option>
+                            <option value="mooresville">Mooresville</option>
+                            <option value="moreland hills">Moreland hills</option>
+                            <option value="moseley">Moseley</option>
+                            <option value="mount holly">Mount holly</option>
+                            <option value="mount horeb">Mount horeb</option>
+                            <option value="mount oliver">Mount oliver</option>
+                            <option value="mount washington">Mount washington</option>
+                            <option value="mt. lebanon">Mt. lebanon</option>
+                            <option value="munhall">Munhall</option>
+                            <option value="munroe falls">Munroe falls</option>
+                            <option value="murrysville">Murrysville</option>
+                            <option value="nellis air force base">Nellis air force base</option>
+                            <option value="neville island">Neville island</option>
+                            <option value="new eagle">New eagle</option>
+                            <option value="new kensington">New kensington</option>
+                            <option value="newbury">Newbury</option>
+                            <option value="north huntingdon">North huntingdon</option>
+                            <option value="north huntington">North huntington</option>
+                            <option value="north las vegas">North las vegas</option>
+                            <option value="north olmsted">North olmsted</option>
+                            <option value="north randall">North randall</option>
+                            <option value="north ridgeville">North ridgeville</option>
+                            <option value="north royalton">North royalton</option>
+                            <option value="north strabane township">North strabane township</option>
+                            <option value="north versailles">North versailles</option>
+                            <option value="northfield">Northfield</option>
+                            <option value="northfield center township">Northfield center township</option>
+                            <option value="norton">Norton</option>
+                            <option value="oakdale">Oakdale</option>
+                            <option value="oakmont">Oakmont</option>
+                            <option value="oakwood">Oakwood</option>
+                            <option value="oakwood village">Oakwood village</option>
+                            <option value="ogden">Ogden</option>
+                            <option value="olmsted falls">Olmsted falls</option>
+                            <option value="omaha">Omaha</option>
+                            <option value="orange">Orange</option>
+                            <option value="oregon">Oregon</option>
+                            <option value="painesville">Painesville</option>
+                            <option value="painesville township">Painesville township</option>
+                            <option value="paoli">Paoli</option>
+                            <option value="paradise">Paradise</option>
+                            <option value="paradise valley">Paradise valley</option>
+                            <option value="parma">Parma</option>
+                            <option value="parma heights">Parma heights</option>
+                            <option value="paw creek">Paw creek</option>
+                            <option value="peninsula">Peninsula</option>
+                            <option value="penn hills">Penn hills</option>
+                            <option value="peoria">Peoria</option>
+                            <option value="pepper pike">Pepper pike</option>
+                            <option value="perry">Perry</option>
+                            <option value="peters township">Peters township</option>
+                            <option value="philo">Philo</option>
+                            <option value="phoenix">Phoenix</option>
+                            <option value="pineville">Pineville</option>
+                            <option value="pitcairn">Pitcairn</option>
+                            <option value="pittsburgh">Pittsburgh</option>
+                            <option value="pleasant hills">Pleasant hills</option>
+                            <option value="plum">Plum</option>
+                            <option value="port vue">Port vue</option>
+                            <option value="presto">Presto</option>
+                            <option value="queen creek">Queen creek</option>
+                            <option value="ranlo">Ranlo</option>
+                            <option value="rantoul">Rantoul</option>
+                            <option value="ravenna">Ravenna</option>
+                            <option value="richfield">Richfield</option>
+                            <option value="richmond heights">Richmond heights</option>
+                            <option value="rillton">Rillton</option>
+                            <option value="rio verde">Rio verde</option>
+                            <option value="robinson">Robinson</option>
+                            <option value="robinson township">Robinson township</option>
+                            <option value="rock hill">Rock hill</option>
+                            <option value="rocky river">Rocky river</option>
+                            <option value="ross">Ross</option>
+                            <option value="ross township">Ross township</option>
+                            <option value="rostraver township">Rostraver township</option>
+                            <option value="rouses point">Rouses point</option>
+                            <option value="rural ridge">Rural ridge</option>
+                            <option value="russellton">Russellton</option>
+                            <option value="sagamore hills">Sagamore hills</option>
+                            <option value="saint joseph">Saint joseph</option>
+                            <option value="sauk city">Sauk city</option>
+                            <option value="savoy">Savoy</option>
+                            <option value="scottsdale">Scottsdale</option>
+                            <option value="seven hills">Seven hills</option>
+                            <option value="sewickley">Sewickley</option>
+                            <option value="shaker heights">Shaker heights</option>
+                            <option value="shaler township">Shaler township</option>
+                            <option value="sharpsburg">Sharpsburg</option>
+                            <option value="sheffield">Sheffield</option>
+                            <option value="sheffield lake">Sheffield lake</option>
+                            <option value="shorewood hills">Shorewood hills</option>
+                            <option value="sidney">Sidney</option>
+                            <option value="solon">Solon</option>
+                            <option value="somerton">Somerton</option>
+                            <option value="south amherst">South amherst</option>
+                            <option value="south euclid">South euclid</option>
+                            <option value="south park township">South park township</option>
+                            <option value="spartanburg">Spartanburg</option>
+                            <option value="spring valley">Spring valley</option>
+                            <option value="springdale">Springdale</option>
+                            <option value="squirrel hill">Squirrel hill</option>
+                            <option value="st joseph">St joseph</option>
+                            <option value="stallings">Stallings</option>
+                            <option value="stanley">Stanley</option>
+                            <option value="stoughton">Stoughton</option>
+                            <option value="stow">Stow</option>
+                            <option value="streetsboro">Streetsboro</option>
+                            <option value="strongsville">Strongsville</option>
+                            <option value="sturgeon">Sturgeon</option>
+                            <option value="sun city">Sun city</option>
+                            <option value="sun lakes">Sun lakes</option>
+                            <option value="sun prairie">Sun prairie</option>
+                            <option value="sunrise manor">Sunrise manor</option>
+                            <option value="surprise">Surprise</option>
+                            <option value="sutersville">Sutersville</option>
+                            <option value="swissvale">Swissvale</option>
+                            <option value="tallmadge">Tallmadge</option>
+                            <option value="tarentum">Tarentum</option>
+                            <option value="tega cay">Tega cay</option>
+                            <option value="tempe">Tempe</option>
+                            <option value="tolleson">Tolleson</option>
+                            <option value="tolono">Tolono</option>
+                            <option value="trafford">Trafford</option>
+                            <option value="tremont">Tremont</option>
+                            <option value="troy township">Troy township</option>
+                            <option value="turtle creek">Turtle creek</option>
+                            <option value="tuscola">Tuscola</option>
+                            <option value="twinsburg">Twinsburg</option>
+                            <option value="university heights">University heights</option>
+                            <option value="upper saint clair">Upper saint clair</option>
+                            <option value="upper st. clair">Upper st. clair</option>
+                            <option value="urbana">Urbana</option>
+                            <option value="valley city">Valley city</option>
+                            <option value="valley view">Valley view</option>
+                            <option value="venetia">Venetia</option>
+                            <option value="verona">Verona</option>
+                            <option value="villa grove">Villa grove</option>
+                            <option value="waddell">Waddell</option>
+                            <option value="wadsworth">Wadsworth</option>
+                            <option value="walton hills">Walton hills</option>
+                            <option value="warrensville heights">Warrensville heights</option>
+                            <option value="waunakee">Waunakee</option>
+                            <option value="waxhaw">Waxhaw</option>
+                            <option value="weddington">Weddington</option>
+                            <option value="wesley chapel">Wesley chapel</option>
+                            <option value="west elizabeth">West elizabeth</option>
+                            <option value="west homestead">West homestead</option>
+                            <option value="west mifflin">West mifflin</option>
+                            <option value="west view">West view</option>
+                            <option value="westlake">Westlake</option>
+                            <option value="wexford">Wexford</option>
+                            <option value="white oak">White oak</option>
+                            <option value="wickliffe">Wickliffe</option>
+                            <option value="wilkins township">Wilkins township</option>
+                            <option value="wilkinsburg">Wilkinsburg</option>
+                            <option value="willoughby">Willoughby</option>
+                            <option value="willoughby hills">Willoughby hills</option>
+                            <option value="willowick">Willowick</option>
+                            <option value="wilmerding">Wilmerding</option>
+                            <option value="windsor">Windsor</option>
+                            <option value="woodmere">Woodmere</option>
+                            <option value="woodmere village">Woodmere village</option>
+                            <option value="york">York</option>
+                            <option value="youngtown">Youngtown</option>
+                            
+                            
+                        </datalist>  
+                        <br>
+                        <br>
+                        <label for="state">State</label>
+                        <select id="state" name="state">
+                                <option value="AR">AR</option>
+                                <option value="AZ">AZ</option>
+                                <option value="IL">IL</option>
+                                <option value="NC">NC</option>
+                                <option value="NE">NE</option>
+                                <option value="NV">NV</option>
+                                <option value="NY">NY</option>
+                                <option value="OH">OH</option>
+                                <option value="PA">PA</option>
+                                <option value="SC">SC</option>
+                                <option value="VA">VA</option>
+                                <option value="WA">WA</option>
+                                <option value="WI">WI</option>
+                        </select>
+                    <br>
+                    <br>
+                    <h3> Awesome! Could you tell us more? (Only if you want!)</h3>
+                    <br>
+                    <label for="answer" > Yes or No? </label>
+                    <input type="text" id="answer" name="answer" >
+                    <br>
+                    <br>
+                    <h3> If YES, please rate these categories from 1 to 5 with 5 is "Super craving for it!"</h3>
+                    <br>
+                    <label for='pizza' style = 'display: inline-block;text-align: right;width:200px'>Pizza</label>
+                    <input type='text' id='pizza' name='pizza' value='1' >
+                    <br>
+                    <label for='american' style = 'display: inline-block;text-align: right;width:200px'>American</label>
+                    <input type='text' id='american' name='american' value='1' >
+                    <br>
+                    <label for='fast food' style = 'display: inline-block;text-align: right;width:200px'>Fast food</label>
+                    <input type='text' id='fast food' name='fast food' value='1' >
+                    <br>
+                    <label for='mexican' style = 'display: inline-block;text-align: right;width:200px'>Mexican</label>
+                    <input type='text' id='mexican' name='mexican' value='1' >
+                    <br>
+                    <label for='sandwiches' style = 'display: inline-block;text-align: right;width:200px'>Sandwiches</label>
+                    <input type='text' id='sandwiches' name='sandwiches' value='1' >
+                    <br>
+                    <label for='burgers' style = 'display: inline-block;text-align: right;width:200px'>Burgers</label>
+                    <input type='text' id='burgers' name='burgers' value='1' >
+                    <br>
+                    <label for='bars' style = 'display: inline-block;text-align: right;width:200px'>Bars</label>
+                    <input type='text' id='bars' name='bars' value='1' >
+                    <br>
+                    <label for='chinese' style = 'display: inline-block;text-align: right;width:200px'>Chinese</label>
+                    <input type='text' id='chinese' name='chinese' value='1' >
+                    <br>
+                    <label for='italian' style = 'display: inline-block;text-align: right;width:200px'>Italian</label>
+                    <input type='text' id='italian' name='italian' value='1' >
+                    <br>
+                    <label for='breakfast brunch' style = 'display: inline-block;text-align: right;width:200px'>Breakfast brunch</label>
+                    <input type='text' id='breakfast brunch' name='breakfast brunch' value='1' >
+                    <br>
+                    <label for='salad' style = 'display: inline-block;text-align: right;width:200px'>Salad</label>
+                    <input type='text' id='salad' name='salad' value='1' >
+                    <br>
+                    <label for='coffee tea' style = 'display: inline-block;text-align: right;width:200px'>Coffee tea</label>
+                    <input type='text' id='coffee tea' name='coffee tea' value='1' >
+                    <br>
+                    <label for='chicken wings' style = 'display: inline-block;text-align: right;width:200px'>Chicken wings</label>
+                    <input type='text' id='chicken wings' name='chicken wings' value='1' >
+                    <br>
+                    <label for='seafood' style = 'display: inline-block;text-align: right;width:200px'>Seafood</label>
+                    <input type='text' id='seafood' name='seafood' value='1' >
+                    <br>
+                    <label for='delis' style = 'display: inline-block;text-align: right;width:200px'>Delis</label>
+                    <input type='text' id='delis' name='delis' value='1' >
+                    <br>
+                    <label for='japanese' style = 'display: inline-block;text-align: right;width:200px'>Japanese</label>
+                    <input type='text' id='japanese' name='japanese' value='1' >
+                    <br>
+                    <label for='soup' style = 'display: inline-block;text-align: right;width:200px'>Soup</label>
+                    <input type='text' id='soup' name='soup' value='1' >
+                    <br>
+                    <label for='bakeries' style = 'display: inline-block;text-align: right;width:200px'>Bakeries</label>
+                    <input type='text' id='bakeries' name='bakeries' value='1' >
+                    <br>
+                    <label for='thai' style = 'display: inline-block;text-align: right;width:200px'>Thai</label>
+                    <input type='text' id='thai' name='thai' value='1' >
+                    <br>
+                    <label for='barbeque' style = 'display: inline-block;text-align: right;width:200px'>Barbeque</label>
+                    <input type='text' id='barbeque' name='barbeque' value='1' >
+                    <br>
+                    <br>
+                    <input type="Submit" value="Search">
                 
 
                 </form>

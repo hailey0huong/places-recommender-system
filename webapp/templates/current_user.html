@@ -1,13 +1,31 @@
 <html>
-<body>
-    <h1 style='text-align: center; color: darkred'>Welcome back!</h1>
 
-<div style="text-align: center">
+        <style>
+                body {
+                        background-image: url('https://images.pexels.com/photos/326279/pexels-photo-326279.jpeg'); 
+                        background-size: 100%; 
+                        background-position: top center;
+                        background-repeat:no-repeat;
+                        box-shadow: inset 0 0 0 1000px rgba(87, 86, 86, 0.2);
+                        color: WHITE;
+                        width: 800px;
+                        font-family: 'Courier New', Courier, monospace;
+            
+                    }
+            </style>
+<body>
+    <h1 style='text-align: center; color:rgb(226, 64, 64); font-size:300%'>Welcome back!</h1>
+
+<div style="text-align: center; font-size: 150%">
   <form action="/current-user-result" method="POST">
-    <label for="user_id">User ID</label>
+    <label for="user_id">What is your User ID?</label>
     <input type="text" id="user_id" name="user_id">
     <br>
-    <label for="zip_code">Zip Code:
+    <br>
+    <p> Which area would you like to explore options?</p>
+    <br>
+    <br>
+    <label for="zip_code">Zip Code
     <input list = "zip_code" name = "zip_code" /></label>
     <datalist id="zip_code">
         <option value="12919">12919</option>
@@ -602,6 +620,7 @@
         <option value="93013">93013</option>
     </datalist>
     <br>
+    <br>
     <label for="city">City
         <input list = "city" name = "city" />
     </label>
@@ -989,7 +1008,7 @@
         
         
     </datalist>  
-
+    <br>
     <br>
     <label for="state">State</label>
     <select id="state" name="state">
@@ -1007,6 +1026,7 @@
             <option value="WA">WA</option>
             <option value="WI">WI</option>
     </select>
+    <br>
     <br>
     <input type="Submit" value="Search">
   </form>

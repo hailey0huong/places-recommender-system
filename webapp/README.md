@@ -5,4 +5,4 @@ To run the app in your computer:
 
 ```flask run```
 
-![](demo2.gif)
+![](demo3.gif)
