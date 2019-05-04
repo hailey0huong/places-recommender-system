@@ -222,8 +222,8 @@ df.date <- separate(df.date,date,c("date","time"),sep=" ")
 df.date <- data.frame(user_id,df.date)
 head(df.date)
 
-sunrise <- times("6:30:00")
-sunset <- times("18:30:00")
+sunrise <- times("7:30:00")
+sunset <- times("19:30:00")
 
 time <- times(df.date$time)
 day_night <- lapply(time>=sunrise&time<=sunset,ifelse,yes="day",no="night")
