@@ -1,0 +1,303 @@
+---
+title: "checkin_analysis"
+author: "Xi Sun"
+date: "May 4, 2019"
+output: pdf_document
+---
+
+## Loading libraries will be used
+
+```{r,message=FALSE,warning=FALSE}
+library(jsonlite)
+library(stringr)
+library(tidyr)
+library(chron)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+```
+
+## Read "business.csv"
+
+```{r}
+business <- read.csv("C:/Users/31586/Desktop/yelp_dataset/business.csv",header=TRUE)
+head(business)
+#nrow(business) #24800
+```
+
+## Read "checkin.json" and write "checkin.csv"
+
+```{r}
+CHECKIN <- stream_in(file("C:/Users/31586/Desktop/yelp_dataset/checkin.json"))
+#nrow(CHECKIN)
+#161950
+CHECKINind <- which(CHECKIN$business_id %in% business$business_id)
+Checkin <- CHECKIN[CHECKINind,]
+path.checkin <- "C:\\Users\\31586\\Desktop\\yelp_dataset\\"
+write.csv(Checkin,paste(path.checkin,"checkin.csv",sep=""))
+```
+
+## Read "checkin.csv"
+
+```{r}
+checkin <- read.csv("C:/Users/31586/Desktop/yelp_dataset/checkin.csv",header=TRUE)
+summary(checkin)
+#nrow(checkin)
+#24448
+#length(unique(business$business_id))-length(unique(checkin$business_id))
+#352
+```
+
+## Number of checkin
+
+```{r}
+date <- as.character(checkin$date)
+quantity <- c()
+for (i in 1:length(date)){
+  number = str_count(date[i],",")+1
+  quantity[i] = number
+}
+sum(quantity>=3287)
+```
+
+## Average checkin
+
+```{r}
+date <- as.character(checkin$date)
+date.split <- strsplit(date,split=", ")
+
+first <- c()
+for (i in 1:length(date)){
+  first[i] <- date.split[[i]][1]
+}
+first <- as.Date(first)
+
+last <- c()
+for (i in 1:length(date)){
+  last[i] <- date.split[[i]][length(date.split[[i]])]
+}
+last <- as.Date(last)
+
+comma <- c()
+for (i in 1:length(date)){
+  comma[i] <- str_count(date[i],",")
+}
+
+avg_checkin <- round(difftime(last,first,units="days")/comma,2)
+avg_checkin[which(comma==0)] <- 0
+head(avg_checkin)
+```
+
+## Frequency checkin weekday
+
+```{r}
+#Weekday
+#date <- as.character(checkin$date)
+#date.split <- strsplit(date,split=", ")
+date.only <- lapply(date.split,as.Date)
+weekday <- lapply(date.only,weekdays)
+freq.weekday <- lapply(weekday,table)
+date_vec <- c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+for (i in 1:length(date)){
+  date_order <- match(date_vec,names(freq.weekday[[i]]))
+  freq.weekday[[i]] = freq.weekday[[i]][date_order]
+}
+freq.weekday <- unlist(freq.weekday)
+weekday.table <- matrix(freq.weekday,ncol=7,byrow=TRUE)
+colnames(weekday.table) <- c("Checkin_Monday","Checkin_Tuesday",
+                             "Checkin_Wednesday","Checkin_Thursday",
+                             "Checkin_Friday","Checkin_Saturday",
+                             "Checkin_Sunday")
+weekday.table[is.na(weekday.table)] <- 0
+weekday.table <- data.frame(weekday.table)
+head(weekday.table)
+
+#Write
+path <- "C:\\Users\\31586\\Desktop\\yelp_dataset\\"
+write.csv(weekday.table,paste(path,"weekday_checkin.csv",sep=""))
+```
+
+## Frequency checkin month
+
+```{r}
+#Month
+#date <- as.character(checkin$date)
+#date.split <- strsplit(date,split=", ")
+#date.only <- lapply(date.split,as.Date)
+month <- lapply(date.only,month)
+freq.month <- lapply(month,table)
+month_vec1 <- 1:12
+for (i in 1:length(date)){
+  month_order = match(month_vec1,names(freq.month[[i]]))
+  freq.month[[i]] = freq.month[[i]][month_order]
+}
+freq.month <- unlist(freq.month)
+month.table <- matrix(freq.month,ncol=12,byrow=TRUE)
+colnames(month.table) <- c("Checkin_Jan","Checkin_Feb","Checkin_Mar",
+                           "Checkin_Apr","Checkin_May","Checkin_Jun",
+                           "Checkin_Jul","Checkin_Aug","Checkin_Sep",
+                           "Checkin_Oct","Checkin_Nov","Checkin_Dec")
+month.table[is.na(month.table)] <- 0
+month.table <- data.frame(month.table)
+head(month.table)
+#Write
+path <- "C:\\Users\\31586\\Desktop\\yelp_dataset\\"
+write.csv(month.table,paste(path,"month_checkin.csv",sep=""))
+```
+
+## Frequency checkin daynight
+
+```{r}
+#Daynight
+sunrise <- times("7:00:00")
+sunset <- times("19:00:00")
+#date <- as.character(checkin$date)
+datetime <- strsplit(date,split=" ")
+time <- list()
+for (i in 1:length(date)){
+  time[[i]] = datetime[[i]][seq(2,length(datetime[[i]]),2)]
+  time[[i]] = gsub(",","",time[[i]])
+}
+time <- lapply(time,times)
+daynight <- list()
+for (i in 1:length(date)){
+  daynight[[i]] = ifelse(time[[i]]>sunrise&time[[i]]<sunset,"day","night")
+}
+freq.daynight <- lapply(daynight,table)
+
+daynight_vec <- c("day","night")
+for (i in 1:length(date)){
+  daynight_order = match(daynight_vec,names(freq.daynight[[i]]))
+  freq.daynight[[i]] = freq.daynight[[i]][daynight_order]
+}
+freq.daynight <- unlist(freq.daynight)
+daynight_table <- matrix(freq.daynight,ncol=2,byrow=TRUE)
+colnames(daynight_table) <- c("Checkin_day","Checkin_night")
+daynight_table[is.na(daynight_table)] <- 0
+daynight_table <- data.frame(daynight_table)
+head(daynight_table)
+#Write
+path <- "C:\\Users\\31586\\Desktop\\yelp_dataset\\"
+write.csv(daynight_table,paste(path,"daynight_checkin.csv",sep=""))
+```
+
+## Frequency checkin year
+
+```{r}
+#Year
+#date <- as.character(checkin$date)
+#date.split <- strsplit(date,split=", ")
+#date.only <- lapply(date.split,as.Date)
+year <- lapply(date.only,year)
+freq.year <- lapply(year,table)
+year_vec <- 2010:2018
+for (i in 1:length(date)){
+  year_order = match(year_vec,names(freq.year[[i]]))
+  freq.year[[i]] = freq.year[[i]][year_order]
+}
+freq.year <- unlist(freq.year)
+year.table <- matrix(freq.year,ncol=9,byrow=TRUE)
+colnames(year.table) <- c("Checkin_2010","Checkin_2011","Checkin_2012",
+                          "Checkin_2013","Checkin_2014","Checkin_2015",
+                          "Checkin_2016","Checkin_2017","Checkin_2018")
+year.table[is.na(year.table)] <- 0
+year.table <- data.frame(year.table)
+head(year.table)
+#Write
+path <- "C:\\Users\\31586\\Desktop\\yelp_dataset\\"
+write.csv(year.table,paste(path,"year_checkin.csv",sep=""))
+```
+
+## Combine into big dataframe
+
+```{r}
+daynight_checkin <- read.csv("C:/Users/31586/Desktop/yelp_dataset/daynight_checkin.csv",header=TRUE)[,-1]
+weekday_checkin <- read.csv("C:/Users/31586/Desktop/yelp_dataset/weekday_checkin.csv",header=TRUE)[,-1]
+month_checkin <- read.csv("C:/Users/31586/Desktop/yelp_dataset/month_checkin.csv",header=TRUE)[,-1]
+year_checkin <- read.csv("C:/Users/31586/Desktop/yelp_dataset/year_checkin.csv",header=TRUE)[,-1]
+business_id <- checkin$business_id
+freq.checkin <- data.frame(business_id,avg_checkin,daynight_checkin,
+                           weekday_checkin,month_checkin,year_checkin)
+head(freq.checkin)
+#Write the whole thing
+path <- "C:\\Users\\31586\\Desktop\\yelp_dataset\\"
+write.csv(freq.checkin,paste(path,"checkin_freq.csv",sep=""))
+```
+
+## Visualizations
+
+```{r}
+#Read again
+checkin_freq <- read.csv("C:/Users/31586/Desktop/yelp_dataset/checkin_freq.csv",header=TRUE)
+head(checkin_freq,10)
+
+#daynight
+sum_vec_daynight <- c(sum(checkin_freq$Checkin_day),
+                      sum(checkin_freq$Checkin_night))
+total_sum <- sum(sum_vec_daynight)
+pct <- round(sum_vec_daynight/total_sum*100,2)
+pct2 <- paste(pct,"%",sep="")
+label_daynight <- paste(c("day","night"),pct2)
+pie(sum_vec_daynight,
+    labels=label_daynight,
+    col=c("red","blue"),
+    main="Frequency checkin among all day/night")
+
+#weekday
+date_vec <- c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+date_vec <- factor(date_vec,date_vec)
+sum_vec_weekday <- c(sum(checkin_freq$Checkin_Monday),
+                     sum(checkin_freq$Checkin_Tuesday),
+                     sum(checkin_freq$Checkin_Wednesday),
+                     sum(checkin_freq$Checkin_Thursday),
+                     sum(checkin_freq$Checkin_Friday),
+                     sum(checkin_freq$Checkin_Saturday),
+                     sum(checkin_freq$Checkin_Sunday))
+df.sum_weekday <- data.frame(date_vec,sum_vec_weekday)
+ggplot(df.sum_weekday,aes(x=date_vec,y=sum_vec_weekday))+
+  geom_col()+
+  geom_text(aes(label=sum_vec_weekday),vjust=-0.35,size=3.3)+
+  ggtitle("Frequency checkin for weekdays")+
+  labs(x="Weekday",y="Frequency count")
+
+#month
+month_vec <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+month_vec <- factor(month_vec,month_vec)
+sum_vec_month <- c(sum(checkin_freq$Checkin_Jan),
+                   sum(checkin_freq$Checkin_Feb),
+                   sum(checkin_freq$Checkin_Mar),
+                   sum(checkin_freq$Checkin_Apr),
+                   sum(checkin_freq$Checkin_May),
+                   sum(checkin_freq$Checkin_Jun),
+                   sum(checkin_freq$Checkin_Jul),
+                   sum(checkin_freq$Checkin_Aug),
+                   sum(checkin_freq$Checkin_Sep),
+                   sum(checkin_freq$Checkin_Oct),
+                   sum(checkin_freq$Checkin_Nov),
+                   sum(checkin_freq$Checkin_Dec))
+df.sum_month <- data.frame(month_vec,sum_vec_month)
+ggplot(df.sum_month,aes(x=month_vec,y=sum_vec_month))+
+  geom_col()+
+  geom_text(aes(label=sum_vec_month),vjust=-0.35,size=3.3)+
+  ggtitle("Frequency checkin for all month")+
+  labs(x="Month",y="Frequency count")
+
+#year
+year_vec <- as.character(2010:2018)
+year_vec <- factor(year_vec,year_vec)
+sum_vec_year <- c(sum(checkin_freq$Checkin_2010),
+                  sum(checkin_freq$Checkin_2011),
+                  sum(checkin_freq$Checkin_2012),
+                  sum(checkin_freq$Checkin_2013),
+                  sum(checkin_freq$Checkin_2014),
+                  sum(checkin_freq$Checkin_2015),
+                  sum(checkin_freq$Checkin_2016),
+                  sum(checkin_freq$Checkin_2017),
+                  sum(checkin_freq$Checkin_2018))
+df.sum_year <- data.frame(year_vec,sum_vec_year)
+ggplot(df.sum_year,aes(x=year_vec,y=sum_vec_year))+
+  geom_col()+
+  geom_text(aes(label=sum_vec_year),vjust=-0.35,size=3.3)+
+  ggtitle("Frequency checkin for all years")+
+  labs(x="Year",y="Frequency count")
+```
