@@ -4,7 +4,7 @@ author: "Xi Sun"
 date: "May 4, 2019"
 output: pdf_document
 ---
-```{r}
+```{r,message=FALSE,warning=FALSE}
 library(jsonlite)
 library(stringr)
 library(tidyr)
