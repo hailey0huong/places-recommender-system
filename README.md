@@ -2,4 +2,4 @@
 
 + Main Analysis: business and review
 
-++ Supporting Analysis: user, checkin, and tip
++ Supporting Analysis: user, checkin, and tip
