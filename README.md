@@ -1,4 +1,4 @@
-# places-recommender-system
+# GoodEats - Restaurant Recommender System
 
 + Main Analysis: business and review
 
